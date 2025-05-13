@@ -1,0 +1,273 @@
+/* Estilos generales */
+:root {
+    --primary-color: #198754;
+    --primary-dark: #157347;
+    --primary-light: #d1e7dd;
+    --secondary-color: #0d6efd;
+    --danger-color: #dc3545;
+    --warning-color: #ffc107;
+    --light-color: #f8f9fa;
+    --dark-color: #212529;
+    --user-bubble: #e9f5ff;
+    --bot-bubble: #f0f7f2;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Estilos del chat */
+.chat-card {
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.chat-body {
+    height: 60vh;
+    overflow-y: auto;
+    padding: 1.25rem;
+    background-color: #f9f9f9;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-light) transparent;
+}
+
+.chat-body::-webkit-scrollbar {
+    width: 8px;
+}
+
+.chat-body::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.chat-body::-webkit-scrollbar-thumb {
+    background-color: var(--primary-light);
+    border-radius: 20px;
+}
+
+/* Burbujas de chat */
+.message {
+    margin-bottom: 15px;
+    max-width: 80%;
+    animation: fadeIn 0.3s ease-out;
+    position: relative;
+}
+
+.message-user {
+    margin-left: auto;
+    background-color: var(--user-bubble);
+    border-radius: 18px 18px 0 18px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.message-bot {
+    margin-right: auto;
+    background-color: var(--bot-bubble);
+    border-radius: 18px 18px 18px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.message-content {
+    padding: 12px 15px;
+    white-space: pre-line;
+}
+
+/* Mejora para listas dentro de mensajes */
+.message-content ul {
+    padding-left: 20px;
+    margin-bottom: 0;
+}
+
+.message-content li {
+    margin-bottom: 5px;
+}
+
+.message-timestamp {
+    position: absolute;
+    bottom: -16px;
+    font-size: 10px;
+    color: #999;
+}
+
+.message-user .message-timestamp {
+    right: 5px;
+}
+
+.message-bot .message-timestamp {
+    left: 5px;
+}
+
+/* Indicador de escritura */
+.typing-indicator {
+    display: flex;
+    margin-bottom: 15px;
+    align-items: center;
+    padding: 12px 15px !important;
+}
+
+.typing-dot {
+    height: 8px;
+    width: 8px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    animation: typing 1s infinite;
+}
+
+.typing-dot:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.typing-dot:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+/* Estilos del diagnóstico */
+.bmi-circle {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    color: white;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.bmi-range-container {
+    height: 10px;
+    background: linear-gradient(to right, #17a2b8, #28a745, #ffc107, #dc3545);
+    border-radius: 5px;
+    position: relative;
+    margin: 15px 0;
+}
+
+.bmi-indicator {
+    position: absolute;
+    height: 20px;
+    width: 4px;
+    background-color: #333;
+    top: -5px;
+    left: 0;
+    transform: translateX(-50%);
+    transition: left 0.5s ease;
+}
+
+/* Estilos para los macronutrientes */
+.macro-chart {
+    height: 25px;
+    display: flex;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.macro-bar {
+    height: 100%;
+    transition: width 0.5s ease;
+}
+
+.protein-color {
+    background-color: var(--danger-color);
+}
+
+.carbs-color {
+    background-color: var(--warning-color);
+}
+
+.fat-color {
+    background-color: var(--secondary-color);
+}
+
+.macro-indicator {
+    width: 16px;
+    height: 16px;
+    border-radius: 4px;
+}
+
+.energy-box {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.energy-box:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-color: var(--primary-color);
+}
+
+/* Lista de recomendaciones */
+.recommendations-list {
+    padding-left: 20px;
+}
+
+.recommendations-list li {
+    margin-bottom: 8px;
+    position: relative;
+}
+
+.recommendations-list li::before {
+    content: "•";
+    color: var(--primary-color);
+    font-weight: bold;
+    position: absolute;
+    left: -15px;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes typing {
+    0% { opacity: 0.3; transform: scale(0.8); }
+    50% { opacity: 1; transform: scale(1); }
+    100% { opacity: 0.3; transform: scale(0.8); }
+}
+
+/* Mejoras de accesibilidad */
+.btn-success {
+    transition: all 0.2s ease;
+}
+
+.btn-success:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-1px);
+}
+
+.btn-success:active {
+    transform: translateY(0);
+}
+
+/* Efecto de pulso para llamar la atención */
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(25, 135, 84, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(25, 135, 84, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(25, 135, 84, 0); }
+}
+
+.pulse {
+    animation: pulse 2s infinite;
+}
+
+/* Responsive */
+@media (max-width: 576px) {
+    .message {
+        max-width: 90%;
+    }
+    
+    .chat-body {
+        height: 70vh;
+    }
+    
+    .bmi-circle {
+        width: 80px;
+        height: 80px;
+        font-size: 0.9em;
+    }
+}
